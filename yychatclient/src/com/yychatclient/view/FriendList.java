@@ -46,13 +46,15 @@ import javax.swing.*;
 	static final int DISLIKECOUNT=21;
 	JLabel[] dislikelabel=new JLabel[DISLIKECOUNT];
 	
-	public FriendList(){
-		//卡1
+	String userName;
+	
+	public FriendList(String userName){
+		this.userName=userName;//局部变量，给成员变量赋值
+		
+		//第一张卡片，创建对象
 		friendpanel=new JPanel(new BorderLayout());
 		friendbutton=new JButton("我的好友");
 		friendpanel.add(friendbutton,"North");
-		
-		
 		friendlistpanel=new JPanel(new GridLayout(FRIENDCOUNT-1,1));
 		for(int i=1;i<FRIENDCOUNT;i++){
 			friendlabel[i]=new JLabel(i+"",new ImageIcon("images/YY1.gif"),JLabel.LEFT);
@@ -132,12 +134,14 @@ import javax.swing.*;
 		this.add(dislikepanel,"3");
 		
 		this.setSize(150,500);
+		this.setTitle(userName+"的好友列表");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
 	public static void main(String[] args) {
-		FriendList friendList=new FriendList();
+		//FriendList friendList=new FriendList();
     }
 	
 	@Override
@@ -163,7 +167,12 @@ import javax.swing.*;
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		if(arg0.getClickCount()==2)  {
+			JLabel jlbl=	(JLabel)arg0.getSource();
+			String receiver=jlbl.getText();
+			new FriendChat(this.userName,receiver);
+			
+		}
 		
 	}
 

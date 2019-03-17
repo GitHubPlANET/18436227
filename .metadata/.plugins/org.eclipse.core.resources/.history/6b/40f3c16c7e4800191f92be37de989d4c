@@ -1,0 +1,10 @@
+package com.yychatsever.controller;
+
+public class StartSever {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
